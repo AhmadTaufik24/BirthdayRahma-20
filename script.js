@@ -1,27 +1,37 @@
-// Fungsi untuk berpindah halaman
-function nextPage(current, next) {
-    document.getElementById(current).classList.remove("show");
-    document.getElementById(next).classList.add("show");
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const navLinks = document.querySelectorAll("nav ul li a");
 
-// Fungsi untuk mengecek tebakan umur
-function checkAge() {
-    let ageInput = document.getElementById("age-guess").value;
-    let result = document.getElementById("game-result");
-    
-    if (ageInput == 25) {
-        result.innerHTML = "Benar! 🎉";
-    } else {
-        result.innerHTML = "Coba lagi! 😆";
-    }
-}
+    navLinks.forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault(); // Mencegah navigasi default
 
-// Fungsi untuk membagikan halaman
-function sharePage() {
-    alert("Bagikan halaman ini ke temanmu! 🎁");
-}
+            // Membuat container balon
+            const container = document.createElement("div");
+            container.classList.add("balloons-container");
+            document.body.appendChild(container);
 
+            // Menambahkan 3 balon
+            for (let i = 0; i < 3; i++) {
+                const balloon = document.createElement("div");
+                balloon.classList.add("balloon");
+                container.appendChild(balloon);
 
+                // Posisi awal balon di sekitar teks navbar yang diklik
+                const rect = link.getBoundingClientRect();
+                balloon.style.left = `${rect.left + rect.width / 2 - 20}px`;
+                balloon.style.top = `${rect.top}px`;
 
+                // Animasi muncul dan turun ke bawah
+                setTimeout(() => {
+                    balloon.style.opacity = "1";
+                    balloon.style.animation = "floatDown 3s ease-in-out forwards";
+                }, i * 300); // Delay antar balon agar muncul bergantian
+            }
 
-
+            // Hapus container setelah animasi selesai
+            setTimeout(() => {
+                container.remove();
+            }, 3500);
+        });
+    });
+});
