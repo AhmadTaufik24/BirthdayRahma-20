@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Memory Card</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .matched {
+            animation: sparkle 0.5s ease-in-out;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 50px;
+            height: 70px;
+            background: red;
+            border-radius: 50%;
+            animation: rise 5s ease-out forwards;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: yellow;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: gold;
+            animation: explode 1.5s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(7); opacity: 0.8; }
+            100% { transform: scale(10); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Beranda</a></li>
+                <li><a href="message.html">Ucapan</a></li>
+                <li><a href="gallery.html">Galeri</a></li>
+                <li><a href="game.html">Game</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="glowing-text">Memory Card Game 🃏</h1>
+        <p>Cocokkan pasangan kartu yang sama!</p>
+        <div class="game-container">
+            <div class="game-board" id="gameBoard"></div>
+        </div>
+        <div class="buttons-container" id="buttonsContainer" style="display:none;">
+            <button id="retry-game" onclick="resetGame()">Coba Lagi</button>
+            <button id="next-game" onclick="nextGame()">Lanjut</button>
+        </div>
+    </main>
+
+    <div class="celebration" id="celebration"></div>
+
+    <footer>
+        <p>© 2025 Birthday Website</p>
+    </footer>
+
+    <script>
+        let cardsArray = ["🍕", "🍕", "🍦", "🍦", "🎸", "🎸", "🚀", "🚀"];
+        let gameBoard = document.getElementById("gameBoard");
+        let selectedCards = [];
+        let matchedPairs = 0;
+        let celebrationTypes = ["balloons", "confetti", "fireworks"];
+
+        function shuffleCards() {
+            return cardsArray.sort(() => 0.5 - Math.random());
+        }
+
+        function createBoard() {
+            gameBoard.innerHTML = "";
+            matchedPairs = 0;
+            selectedCards = [];
+            let shuffledCards = shuffleCards();
+
+            shuffledCards.forEach(symbol => {
+                let card = document.createElement("div");
+                card.classList.add("card");
+                card.dataset.symbol = symbol;
+                card.innerHTML = "❓";
+                card.addEventListener("click", () => flipCard(card));
+                gameBoard.appendChild(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (selectedCards.length < 2 && !card.classList.contains("matched")) {
+                card.innerHTML = card.dataset.symbol;
+                selectedCards.push(card);
+                if (selectedCards.length === 2) {
+                    setTimeout(checkMatch, 500);
+                }
+            }
+        }
+
+        function checkMatch() {
+            if (selectedCards[0].dataset.symbol === selectedCards[1].dataset.symbol) {
+                selectedCards.forEach(card => card.classList.add("matched"));
+                matchedPairs++;
+                if (matchedPairs === cardsArray.length / 2) {
+                    showCelebration();
+                    document.getElementById("buttonsContainer").style.display = "flex";
+                }
+            } else {
+                selectedCards.forEach(card => card.innerHTML = "❓");
+            }
+            selectedCards = [];
+        }
+
+        function showCelebration() {
+            let celebrationContainer = document.getElementById("celebration");
+            celebrationContainer.innerHTML = "";
+            let randomCelebration = celebrationTypes[Math.floor(Math.random() * celebrationTypes.length)];
+            
+            if (randomCelebration === "balloons") {
+                for (let i = 0; i < 15; i++) {
+                    let balloon = document.createElement("div");
+                    balloon.classList.add("balloon");
+                    balloon.style.left = Math.random() * 100 + "vw";
+                    celebrationContainer.appendChild(balloon);
+                    setTimeout(() => balloon.remove(), 5000);
+                }
+            } else if (randomCelebration === "confetti") {
+                for (let i = 0; i < 30; i++) {
+                    let confetti = document.createElement("div");
+                    confetti.classList.add("confetti");
+                    confetti.style.left = Math.random() * 100 + "vw";
+                    celebrationContainer.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 3000);
+                }
+            } else {
+                for (let i = 0; i < 8; i++) {
+                    let firework = document.createElement("div");
+                    firework.classList.add("firework");
+                    firework.style.left = Math.random() * 100 + "vw";
+                    firework.style.top = Math.random() * 50 + "vh";
+                    celebrationContainer.appendChild(firework);
+                    setTimeout(() => firework.remove(), 1500);
+                }
+            }
+        }
+
+        function resetGame() {
+            document.getElementById("buttonsContainer").style.display = "none";
+            document.getElementById("celebration").innerHTML = "";
+            createBoard();
+        }
+
+        function nextGame() {
+            window.location.href = "game3.html";
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>

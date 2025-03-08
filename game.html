@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tebak Umur</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Confetti Styling */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            opacity: 0.8;
+            top: -10px;
+            animation: confetti-fall linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Beranda</a></li>
+                <li><a href="message.html">Ucapan</a></li>
+                <li><a href="gallery.html">Galeri</a></li>
+                <li><a href="game.html">Game</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="glowing-text">Game Tebak Umur 🎉</h1>
+        <p>Coba tebak umur yang benar! (Hint: Jangan percaya 100% 😆)</p>
+
+        <div class="game-container">
+            <input type="number" id="umurInput" placeholder="Masukkan angka">
+            <button id="cekUmur">Cek Jawaban</button>
+            <p id="hasilPesan"></p>
+
+            <div id="opsiTombol">
+                <button id="cobaLagi" style="display:none;">Coba Lagi</button>
+                <a href="game2.html"><button id="lanjutGame" style="display:none;">Lanjut</button></a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Birthday Website</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let inputUmur = document.getElementById("umurInput");
+            let btnCek = document.getElementById("cekUmur");
+            let pesan = document.getElementById("hasilPesan");
+            let cobaLagiBtn = document.getElementById("cobaLagi");
+            let lanjutGameBtn = document.getElementById("lanjutGame");
+
+            let percobaan = 0;
+
+            btnCek.addEventListener("click", function () {
+                let umur = parseInt(inputUmur.value);
+
+                if (percobaan === 0 && umur === 20) {
+                    pesan.textContent = "Salahh, umur anda 29, udah tua juga ya hehe";
+                    cobaLagiBtn.style.display = "inline-block";
+                    lanjutGameBtn.style.display = "inline-block";
+                    btnCek.style.display = "none";
+                } else if (percobaan === 1) {
+                    pesan.textContent = "Salah, ayo coba lagi";
+                } else if (percobaan === 2) {
+                    pesan.textContent = "Salah, ayo sedikit lagi";
+                } else if (percobaan === 3) {
+                    pesan.textContent = "Betuuuuul, tapi tadi cuma prank aja hhe";
+                    cobaLagiBtn.style.display = "none";
+                    lanjutGameBtn.style.display = "inline-block";
+                    showConfetti(); // Animasi perayaan
+                }
+
+                percobaan++;
+            });
+
+            cobaLagiBtn.addEventListener("click", function () {
+                inputUmur.value = "";
+                pesan.textContent = "";
+                btnCek.style.display = "inline-block";
+                cobaLagiBtn.style.display = "none";
+            });
+
+            function showConfetti() {
+                for (let i = 0; i < 50; i++) {
+                    let confetti = document.createElement("div");
+                    confetti.classList.add("confetti");
+                    confetti.style.left = Math.random() * 100 + "vw";
+                    confetti.style.backgroundColor = getRandomColor();
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + "s"; 
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }
+            }
+
+            function getRandomColor() {
+                let colors = ["#f39c12", "#e74c3c", "#2ecc71", "#3498db", "#9b59b6"];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+        });
+    </script>
+
+</body>
+</html>

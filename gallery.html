@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kenangan</title>
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Pacifico&family=Quicksand:wght@300;400;700&display=swap');
+
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Warna utama */
+        :root {
+            --primary-blue: #3498db;
+            --soft-pink: #ff69b4;
+            --background-white: #f9f9f9;
+            --text-dark: #333;
+        }
+
+        /* Body Styling */
+        body {
+            background-color: var(--background-white);
+            color: var(--text-dark);
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        /* Header */
+        header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navbar */
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            background: var(--soft-pink);
+            border-radius: 8px;
+        }
+
+        /* Main Content */
+        main {
+            padding: 50px 20px;
+        }
+
+        /* Gallery */
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            display: block;
+            margin: auto;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Button Styling */
+        .button-container {
+            margin-top: 30px;
+        }
+
+        .button-container a {
+            text-decoration: none;
+        }
+
+        .button-container button {
+            background: var(--soft-pink);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .button-container button:hover {
+            background: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Beranda</a></li>
+                <li><a href="message.html">Ucapan</a></li>
+                <li><a href="gallery.html">Galeri</a></li>
+                <li><a href="game.html">Game</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Galeri Kenangan 📸</h2>
+        <div class="gallery-container">
+            <div class="gallery">
+                <img src="foto1.jpg" alt="Foto 1" onclick="openModal(this.src)">
+                <img src="foto2.jpg" alt="Foto 2" onclick="openModal(this.src)">
+                <img src="foto3.jpg" alt="Foto 3" onclick="openModal(this.src)">
+                <img src="foto4.jpg" alt="Foto 4" onclick="openModal(this.src)">
+                <img src="foto5.jpg" alt="Foto 5" onclick="openModal(this.src)">
+                <img src="foto6.jpg" alt="Foto 6" onclick="openModal(this.src)">
+            </div>
+
+            <div class="button-container">
+                <a href="game.html"><button>Main Game 🎮</button></a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal untuk memperbesar gambar -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <footer>
+        <p>© 2025 Birthday Website</p>
+    </footer>
+
+    <script>
+        // Fungsi untuk membuka modal saat gambar diklik
+        function openModal(src) {
+            document.getElementById("modalImage").src = src;
+            document.getElementById("imageModal").style.display = "flex";
+        }
+
+        // Fungsi untuk menutup modal
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
