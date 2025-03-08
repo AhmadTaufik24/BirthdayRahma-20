@@ -5,16 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ucapan Spesial</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    
 </head>
 <body>
 
     <header>
         <nav>
             <ul>
-                <li><a href="home.html">Beranda</a></li>
-                <li><a href="message.html">Ucapan</a></li>
-                <li><a href="gallery.html">Galeri</a></li>
-                <li><a href="game.html">Game</a></li>
+                <li>
+    <a href="home.html" class="nav-link">Beranda
+        <span class="balloon"></span>
+    </a>
+</li>
+<li>
+    <a href="message.html" class="nav-link">Ucapan
+        <span class="balloon"></span>
+    </a>
+</li>
+<li>
+    <a href="gallery.html" class="nav-link">Galeri
+        <span class="balloon"></span>
+    </a>
+</li>
+<li>
+    <a href="game.html" class="nav-link">Game
+        <span class="balloon"></span>
+    </a>
+</li>
             </ul>
         </nav>
     </header>
@@ -28,11 +47,21 @@
         <p>**Di hari ulang tahunmu ini, aku cuma mau bilang: enjoy your day, banyakin belajar, banyakin tenang, karena yang tenang udah pasti menang!** ✨🥳 Usia baru, perjalanan baru—nggak perlu buru-buru, jalani aja satu per satu. Tetap santai, tetap semangat, dan tetap jadi versi terbaik dari diri kamu sendiri. 🚀💖</p>
         <p>Sekali lagi, selamat ulang tahun!! 🎁🎂✨ Semoga di usia baru ini, kamu makin bijak, makin bahagia, dan segala yang kamu impikan bisa terwujud satu per satu. Tetap jadi diri sendiri dan nikmati setiap prosesnya!</p>
         <a href="gallery.html"><button>Lihat Kenangan</button></a>
+        
+        <div class="balloon-container"></div>
     </main>
 
     <footer>
         <p>© 2025 Birthday Website</p>
     </footer>
+<script src="script.js"></script>
+<script>
+document.querySelectorAll("nav ul li a").forEach(link => {
+    link.addEventListener("click", function () {
+        this.style.background = "transparent";
+    });
+});
+</script>
 
 </body>
 </html>
