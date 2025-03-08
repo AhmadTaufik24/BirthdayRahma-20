@@ -113,10 +113,6 @@ h1 {
     color: var(--soft-pink);
     font-weight: bold;
     text-shadow: 3px 3px 10px rgba(255, 105, 180, 0.5);
-    font-family: 'Playfair Display', serif; /* Ganti dengan font yang diinginkan */
-    font-weight: bold; /* Atur ketebalan jika perlu */
-    font-size: 36px; /* Sesuaikan ukuran */
-}
 }
 
 /* --- Paragraf Styling --- */
