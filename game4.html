@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Kenangan</title>
+    <title>Ucapan Spesial</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         .hidden { display: none; }
         .correct { color: green; font-weight: bold; animation: pop 0.5s ease-in-out; }
@@ -31,59 +33,58 @@
     </style>
 </head>
 <body>
+
     <header>
         <nav>
             <ul>
-                <li><a href="home.html">Beranda</a></li>
-                <li><a href="message.html">Ucapan</a></li>
-                <li><a href="gallery.html">Galeri</a></li>
-                <li><a href="game.html">Game</a></li>
+                <li><a href="home.html" class="nav-link">Beranda<span class="balloon"></span></a></li>
+                <li><a href="message.html" class="nav-link">Ucapan<span class="balloon"></span></a></li>
+                <li><a href="gallery.html" class="nav-link">Galeri<span class="balloon"></span></a></li>
+                <li><a href="game.html" class="nav-link">Game<span class="balloon"></span></a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <h1 class="glowing-text">Happy Birthday 🎂</h1>
-        <p>Semoga hari ini penuh kebahagiaan!</p>
+    <main
+        <h1>Game Tebak Angka</h1>
+        <p>Tebak angka antara 1 sampai 10!</p>
+        <input type="number" id="guess" min="1" max="10" placeholder="Masukkan angka...">
+        <button onclick="checkGuess()">Tebak</button>
+        <p id="feedback" class="hidden"></p>
+        <div id="celebration" class="hidden"></div>
 
-        <div id="game-container">
-            <h2>Game Tebak Angka</h2>
-            <p>Tebak angka antara 1 sampai 10!</p>
-            <input type="number" id="guess" min="1" max="10" placeholder="Masukkan angka...">
-            <button onclick="checkGuess()">Tebak</button>
-            <p id="feedback" class="hidden"></p>
-            <div id="celebration" class="hidden"></div>
-
-            <div id="question-container" class="hidden">
-                <p id="question-text"></p>
-                <button id="why-button" class="hidden" onclick="showAnswer()">Kenapa tuh?</button>
-                <p id="answer" class="hidden"></p>
-            </div>
-
-            <div class="buttons-container">
-                <button id="retry-button" class="hidden" onclick="retryGame()">Coba Lagi</button>
-                <button id="next-game-button" class="hidden" onclick="nextGame()">Lanjut ke Game Berikutnya</button>
-            </div>
+        <div id="question-container" class="hidden">
+            <p id="question-text"></p>
+            <button id="why-button" class="hidden" onclick="showAnswer()">Kenapa tuh?</button>
+            <p id="answer" class="hidden"></p>
         </div>
+
+        <div class="buttons-container">
+            <button id="retry-button" class="hidden" onclick="retryGame()">Coba Lagi</button>
+            <button id="next-game-button" class="hidden" onclick="game.html">maaf sayang buttom ini error gabisa dipencet, soalnya kemaleman ngantuk bangett😫🙏
+            <br>coba lagi aja ya, atau kalau mau keluar bisa klik menu di atas😗</button>
+        </div>
+        
+        <div class="balloon-container"></div>
     </main>
 
     <footer>
-        <p>© 2025 Birthday Website</p>
+        <p>© 2025 Birthday Rahma</p>
     </footer>
 
     <script>
         let numberToGuess;
         const answerMap = {
-            1: "Karena kamu adalah yang pertama di hatiku.",
-            2: "Karena hanya kita berdua yang bisa melengkapi satu sama lain.",
-            3: "Karena kamu, aku, dan cinta kita adalah trio yang sempurna.",
-            4: "Karena kita berdua adalah pasangan yang tak terpisahkan.",
-            5: "Karena kamu adalah lima alasan aku tersenyum setiap hari.",
-            6: "Karena kamu membuat dunia ini terasa lebih seimbang.",
-            7: "Karena kamu adalah keberuntungan yang datang dalam hidupku.",
-            8: "Karena kita berdua adalah kebahagiaan yang saling berputar.",
-            9: "Karena cintaku padamu tak terbatas.",
-            10: "Karena denganmu, aku merasa sempurna, 10 di hatiku."
+            1: "Karena kamu adalah yang pertama di hatiku, hhuuuu😜❣️",
+            2: "Karena hanya kita berdua yang bisa melengkapi satu sama lain🤪",
+            3: "Karena kamu, aku, dan cinta kita adalah trio yang sempurna🤣",
+            4: "Karena kita berdua adalah pasangan yang tak terpisahkan😗",
+            5: "Karena kamu adalah lima alasan aku tersenyum setiap hari, hehemmmm🤣❣️",
+            6: "Karena kamu membuat dunia ini terasa lebih seimbang😜.",
+            7: "Karena kamu adalah 7-an hidupkuu😜❣️",
+            8: "Karena kita berdua adalah kebahagiaan yang saling berputar🤣❣️",
+            9: "Karena cintaku padamu tak terbatas🤣",
+            10: "Karena denganmu, aku merasa sempurna, 10 di hatiku😜❣️"
         };
 
         function generateRandomNumber() {
@@ -151,12 +152,11 @@
         }
 
         function nextGame() {
-            // Kamu bisa menambahkan logika untuk melanjutkan ke game berikutnya
-            alert("Lanjut ke game berikutnya!");
+            alert("game.html")
         }
 
-        // Inisialisasi permainan pertama kali
         numberToGuess = generateRandomNumber();
     </script>
+
 </body>
 </html>
