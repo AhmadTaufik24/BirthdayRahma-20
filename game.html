@@ -5,40 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Tebak Umur</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Confetti Styling */
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: red;
-            opacity: 0.8;
-            top: -10px;
-            animation: confetti-fall linear infinite;
-        }
-
-        @keyframes confetti-fall {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
         <nav>
             <ul>
-                <li><a href="home.html">Beranda</a></li>
-                <li><a href="message.html">Ucapan</a></li>
-                <li><a href="gallery.html">Galeri</a></li>
-                <li><a href="game.html">Game</a></li>
+                <li><a href="home.html" class="nav-link">Beranda</a></li>
+                <li><a href="message.html" class="nav-link">Ucapan</a></li>
+                <li><a href="gallery.html" class="nav-link">Galeri</a></li>
+                <li><a href="game.html" class="nav-link">Game</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h1 class="glowing-text">Game Tebak Umur 🎉</h1>
-        <p>Coba tebak umur yang benar! (Hint: Jangan percaya 100% 😆)</p>
+        <h2 class="glowing-text">🎉 Game Tebak Umur 🎉</h2>
+        <p>Coba tebak umur yang benar😆)</p>
 
         <div class="game-container">
             <input type="number" id="umurInput" placeholder="Masukkan angka">
@@ -50,10 +34,12 @@
                 <a href="game2.html"><button id="lanjutGame" style="display:none;">Lanjut</button></a>
             </div>
         </div>
+
+        <div class="confetti-container"></div>
     </main>
 
     <footer>
-        <p>© 2025 Birthday Website</p>
+        <p>© 2025 Birthday Rahma</p>
     </footer>
 
     <script>
@@ -70,16 +56,16 @@
                 let umur = parseInt(inputUmur.value);
 
                 if (percobaan === 0 && umur === 20) {
-                    pesan.textContent = "Salahh, umur anda 29, udah tua juga ya hehe";
+                    pesan.textContent = "Salahh, umur kamu udah 29 wleee😝,udah tua juga ya haha🤣";
                     cobaLagiBtn.style.display = "inline-block";
                     lanjutGameBtn.style.display = "inline-block";
                     btnCek.style.display = "none";
                 } else if (percobaan === 1) {
-                    pesan.textContent = "Salah, ayo coba lagi";
+                    pesan.textContent = " masih salah, ayo coba lagi";
                 } else if (percobaan === 2) {
-                    pesan.textContent = "Salah, ayo sedikit lagi";
+                    pesan.textContent = "yaa masih Salah, ayo sedikit lagi";
                 } else if (percobaan === 3) {
-                    pesan.textContent = "Betuuuuul, tapi tadi cuma prank aja hhe";
+                    pesan.textContent = "Betuuuuul umur kamu 20 tahun, maaf ya aku kerjainm🤪🙏";
                     cobaLagiBtn.style.display = "none";
                     lanjutGameBtn.style.display = "inline-block";
                     showConfetti(); // Animasi perayaan
